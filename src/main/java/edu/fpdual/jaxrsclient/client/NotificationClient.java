@@ -4,14 +4,12 @@ import edu.fpdual.jaxrsclient.client.dto.Notification;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;
-import jakarta.ws.rs.client.Invocation;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
 
 public class NotificationClient {
 
-    private WebTarget webTarget;
+    private final WebTarget webTarget;
 
     public NotificationClient() {
         Client client = ClientBuilder.newClient();
@@ -36,7 +34,6 @@ public class NotificationClient {
     public Notification putNotification(String id, String name) {
 
         return webTarget.path("notifications/get/"+id+"/"+name)
-                .queryParam("name", name)
                 .request(MediaType.APPLICATION_JSON)
                 .put(Entity.entity("",MediaType.APPLICATION_JSON), Notification.class);
     }
