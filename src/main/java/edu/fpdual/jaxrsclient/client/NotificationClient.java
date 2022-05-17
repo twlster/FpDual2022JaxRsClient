@@ -23,6 +23,13 @@ public class NotificationClient {
                 .get(Notification.class);
     }
 
+    public String ping() {
+
+        return webTarget.path("notifications/ping")
+                .request(MediaType.APPLICATION_JSON)
+                .get(String.class);
+    }
+
     public Notification getNotification(String id, String name) {
 
         return webTarget.path("notifications/get/"+id+"/name")
